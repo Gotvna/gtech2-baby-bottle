@@ -1,8 +1,9 @@
-#include <iostream>
-using namespace std;
+#include "window.h"
+#include "const.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    cout << "Hello World!" << endl;
-    exit(0);
+	window_init(SCREEN_WIDTH, SCREEN_HEIGHT);
+	
+	return 0;
 }
