@@ -40,6 +40,11 @@
     </ClInclude>
     <ClInclude Include="date.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="window.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="const.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

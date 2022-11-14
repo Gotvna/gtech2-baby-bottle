@@ -1,57 +1,50 @@
 //Using SDL and standard IO
 #include <SDL.h>
-#include <stdio.h>
+#include "window.h"
+#include "const.h"
 
-int window_init( int window_width, int window_height )
+Bottle_Window::Bottle_Window(int window_width, int window_height)
 {
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
-	
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
+	b_window_width = window_width;
+	b_window_height = window_height;
+	b_window = NULL;
+	b_screenSurface = NULL;
+}
 
-	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-	}
-	else
-	{
-		//Create window
-		window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, SDL_WINDOW_SHOWN );
-		if( window == NULL )
-		{
-			printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-		}
-		else
-		{
-			//Get window surface
-			screenSurface = SDL_GetWindowSurface( window );
-
-			//Fill the surface white
-			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-			
-			//Update the surface
-			SDL_UpdateWindowSurface( window );
-            
-            //Hack to get window to stay up
-            SDL_Event e; 
-			bool quit = false;
-			while ( quit == false )
-			{
-				while( SDL_PollEvent( &e ) )
-				{
-					if( e.type == SDL_QUIT ) quit = true;
-				} 
-			}
-		}
-	}
-
+Bottle_Window::~Bottle_Window() {
 	//Destroy window
-	SDL_DestroyWindow( window );
+	SDL_DestroyWindow(b_window);
 
 	//Quit SDL subsystems
 	SDL_Quit();
+}
+	
+int Bottle_Window::Init()
+{
+	//Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		return 1;
+	
+	//Create window
+	b_window = SDL_CreateWindow("Bottle Scheduler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, b_window_width, b_window_height, SDL_WINDOW_SHOWN);
+	if (b_window == NULL)
+		return 2;
+	
+	//Get window surface
+	b_screenSurface = SDL_GetWindowSurface(b_window);
+}
 
-	return 0;
+void Bottle_Window::Update()
+{
+	//Update the surface
+	SDL_UpdateWindowSurface(b_window);
+}
+
+Button::Button(int x, int y, int w, int h)
+{
+	this->x = x;
+	this->y = y;
+	this->w = w;
+	this->h = h;
+	rect = { x, y, w, h };
 }
