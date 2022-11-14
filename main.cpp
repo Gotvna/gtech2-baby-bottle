@@ -1,5 +1,10 @@
 #include "window.h"
 #include "const.h"
+#include "date.h"
+#include "reminder.cpp"
+#include <iostream>
+using namespace std;
+
 #include "SDL.h"
 #include <stdio.h>
 
@@ -31,6 +36,5 @@ int main(int argc, char* argv[])
 		}
 		bw.Update();
 	}
-	
 	return 0;
 }
