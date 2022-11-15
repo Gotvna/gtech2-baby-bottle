@@ -1,5 +1,5 @@
-//Using SDL and standard IO
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include "window.h"
 #include "const.h"
 
@@ -14,9 +14,10 @@ Bottle_Window::Bottle_Window(int window_width, int window_height)
 Bottle_Window::~Bottle_Window() {
 	//Destroy window
 	SDL_DestroyWindow(b_window);
-
-	//Quit SDL subsystems
 	SDL_Quit();
+
+	TTF_CloseFont(font);
+	TTF_Quit();
 }
 	
 int Bottle_Window::Init()
@@ -30,8 +31,16 @@ int Bottle_Window::Init()
 	if (b_window == NULL)
 		return 2;
 	
+	//Initialize SDL_ttf (text rendering)
+	if (TTF_Init() == -1)
+		return 3;
+	SetFont(TTF_OpenFont("/fonts/KeeponTruckin.ttf", 12));
+	
 	//Get window surface
 	b_screenSurface = SDL_GetWindowSurface(b_window);
+	SDL_FillRect(b_screenSurface, NULL, SDL_MapRGB(b_screenSurface->format, 0xFF, 0xFF, 0xFF));
+
+	return 0;
 }
 
 void Bottle_Window::Update()
@@ -40,11 +49,15 @@ void Bottle_Window::Update()
 	SDL_UpdateWindowSurface(b_window);
 }
 
-Button::Button(int x, int y, int w, int h)
+//Button
+Button::Button(int x, int y, int width, int height)
 {
 	this->x = x;
 	this->y = y;
-	this->w = w;
-	this->h = h;
-	rect = { x, y, w, h };
+	this->width = width;
+	this->height = height;
+}
+
+Button::~Button()
+{
 }

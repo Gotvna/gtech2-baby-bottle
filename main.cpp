@@ -24,16 +24,22 @@ int main(int argc, char* argv[])
 		return 1;
 	default: break;
 	}
+  
 	vector<Produit> newCourse;
 	InitListCourses(newCourse);
 
-
 	window_init(SCREEN_WIDTH, SCREEN_HEIGHT);
-	
+  
+	//Interactives elements creation
+	Button b1 = Button(0, 0, 100, 100);
+	b1.SetFont(bw.GetFont());
+	b1.setText("Test");
+  
 	// Main loop
 	bool running = true;
 	while (running)
 	{
+		//Catching events
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
@@ -42,6 +48,8 @@ int main(int argc, char* argv[])
 				running = false;
 			}
 		}
+		
+		//Drawing
 		bw.Update();
 	}
 	
