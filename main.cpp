@@ -4,7 +4,7 @@
 #include "reminder.cpp"
 #include <iostream>
 using namespace std;
-#include "liste_course.h"
+#include "shopping_list.h"
 
 #include "SDL.h"
 #include <stdio.h>

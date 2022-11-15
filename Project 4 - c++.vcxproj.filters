@@ -4,6 +4,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reminder.cpp" />
     <ClCompile Include="window.cpp" />
+    <ClCompile Include="shopping_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="window.cpp">
@@ -12,20 +13,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="liste_course.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="reminder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="const.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="window.h">
-      <Filter>Fichiers sources</Filter>
-    </ClInclude>
     <ClInclude Include="const.h">
       <Filter>Fichiers sources</Filter>
     </ClInclude>
@@ -33,6 +25,9 @@
     <ClInclude Include="const.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="reminder.h" />
+    <ClInclude Include="window.h" />
+    <ClInclude Include="const.h" />
+    <ClInclude Include="shopping_list.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
 </Project>
