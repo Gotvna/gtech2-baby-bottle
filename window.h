@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 class Bottle_Window
 {
@@ -8,26 +9,35 @@ public:
 	~Bottle_Window();
 	int Init();
 	void Update();
+	void SetFont(TTF_Font* font) { this->font = font; }
 	
 	int GetWidth() { return b_window_width; }
 	int GetHeight() { return b_window_height; }
 	SDL_Window* GetWindow() { return b_window; }
 	SDL_Surface* GetSurface() { return b_screenSurface; }
+	TTF_Font *GetFont() { return font; }
 	
 private:
 	int b_window_width;
 	int b_window_height;
 	SDL_Window* b_window;
 	SDL_Surface* b_screenSurface;
+	TTF_Font* font = NULL;
 };
+
 
 class Button
 {
 public:
-	Button(int x, int y, int w, int h);
-	SDL_Rect GetRect() { return rect; }
+	Button(int x, int y, int width, int height);
+	~Button();
+	void setText(const char* text) { this->text = text; }
+	const char* getText() { return text; }
+	void SetFont(TTF_Font* font) { this->font = font; }
+	TTF_Font* GetFont() { return font; }
 
 private:
-	int x, y, w, h;
-	SDL_Rect rect;
+	int x, y, width, height;
+	const char* text;
+	TTF_Font* font = NULL;
 };
