@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="liste_course.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reminder.cpp" />
     <ClCompile Include="window.cpp" />
@@ -28,6 +29,7 @@
     <ClInclude Include="const.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="reminder.h" />
+    <ClInclude Include="liste_course.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

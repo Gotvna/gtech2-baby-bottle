@@ -4,9 +4,12 @@
 #include "reminder.cpp"
 #include <iostream>
 using namespace std;
+#include "liste_course.h"
 
 #include "SDL.h"
 #include <stdio.h>
+
+
 
 int main(int argc, char* argv[])
 {
@@ -21,12 +24,17 @@ int main(int argc, char* argv[])
 		return 1;
 	default: break;
 	}
+  
+	vector<Produit> newCourse;
+	InitListCourses(newCourse);
 
+	window_init(SCREEN_WIDTH, SCREEN_HEIGHT);
+  
 	//Interactives elements creation
 	Button b1 = Button(0, 0, 100, 100);
 	b1.SetFont(bw.GetFont());
 	b1.setText("Test");
-	
+  
 	// Main loop
 	bool running = true;
 	while (running)
@@ -44,5 +52,6 @@ int main(int argc, char* argv[])
 		//Drawing
 		bw.Update();
 	}
+	
 	return 0;
 }
