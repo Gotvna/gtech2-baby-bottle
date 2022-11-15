@@ -25,11 +25,6 @@ int main(int argc, char* argv[])
 	default: break;
 	}
   
-	vector<Produit> newCourse;
-	InitListCourses(newCourse);
-
-	window_init(SCREEN_WIDTH, SCREEN_HEIGHT);
-  
 	//Interactives elements creation
 	Button b1 = Button(0, 0, 100, 100);
 	b1.SetFont(bw.GetFont());
