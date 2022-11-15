@@ -38,7 +38,26 @@ int Bottle_Window::Init()
 	
 	//Get window surface
 	b_screenSurface = SDL_GetWindowSurface(b_window);
-	SDL_FillRect(b_screenSurface, NULL, SDL_MapRGB(b_screenSurface->format, 0xFF, 0xFF, 0xFF));
+	SDL_FillRect(b_screenSurface, NULL, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
+
+	SDL_Rect rect;
+	rect.x = 220;
+	rect.y = 100;
+	rect.w = 200;
+	rect.h = 80;
+	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
+	
+	SDL_Rect rect2;
+	rect2.x = 220;
+	rect2.y = 400;
+	rect2.w = 200;
+	rect2.h = 80;
+	SDL_FillRect(b_screenSurface, &rect2, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
+
+	SDL_RenderDrawRect(renderer, &rect);
+	SDL_RenderDrawRect(renderer, &rect2);
+	
+
 
 	return 0;
 }

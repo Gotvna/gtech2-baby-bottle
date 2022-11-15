@@ -2,13 +2,11 @@
 #include "const.h"
 #include "date.h"
 #include "reminder.cpp"
-#include <iostream>
-using namespace std;
 #include "shopping_list.h"
-
 #include "SDL.h"
 #include <stdio.h>
-
+#include <iostream>
+using namespace std;
 
 
 int main(int argc, char* argv[])
@@ -45,7 +43,9 @@ int main(int argc, char* argv[])
 		}
 		
 		//Drawing
+		
 		bw.Update();
+		
 	}
 	
 	return 0;
