@@ -28,13 +28,10 @@ ShoppingList::~ShoppingList()
 {
 }	
 
-void ShoppingList::ShowList()
+vector<Item> ShoppingList::GetList()
 {
-	for (int i = 0; i < list.size(); i++)
-	{
-		cout << list[i].name << " " << list[i].quantity << endl;
-	}
-}	
+	return list;
+}
 
 void ShoppingList::AddItem(Item i)
 {

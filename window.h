@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include "shopping_list.h"
 
 class Bottle_Window
 {
@@ -16,6 +17,9 @@ public:
 	SDL_Window* GetWindow() { return b_window; }
 	SDL_Surface* GetSurface() { return b_screenSurface; }
 	TTF_Font *GetFont() { return font; }
+
+	void drawText(string text, SDL_Rect rect, SDL_Color color);
+	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
 	
 private:
 	int b_window_width;
@@ -23,7 +27,6 @@ private:
 	SDL_Window* b_window;
 	SDL_Surface* b_screenSurface;
 	TTF_Font* font = NULL;
-	SDL_Renderer* renderer;
 };
 
 

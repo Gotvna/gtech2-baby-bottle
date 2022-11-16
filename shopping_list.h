@@ -15,7 +15,7 @@ class ShoppingList
 public:
 	ShoppingList();
 	~ShoppingList();
-	void ShowList();
+	vector<Item> GetList();
 	void AddItem(Item i);
 	void RemoveItem(Item i);
 	void RemoveItem(int index);

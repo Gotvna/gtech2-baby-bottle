@@ -18,9 +18,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="const.h">
-      <Filter>Fichiers sources</Filter>
-    </ClInclude>
     <ClInclude Include="bottle.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="date.h" />
@@ -29,5 +26,6 @@
     <ClInclude Include="const.h" />
     <ClInclude Include="shopping_list.h" />
     <ClInclude Include="window.h" />
+    <ClInclude Include="const.h" />
   </ItemGroup>
 </Project>
