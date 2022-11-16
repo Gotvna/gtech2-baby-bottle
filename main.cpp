@@ -1,11 +1,9 @@
+#include "SDL.h"
 #include "window.h"
 #include "const.h"
 #include "date.h"
-#include "reminder.cpp"
-#include "shopping_list.h"
-#include "SDL.h"
-#include <stdio.h>
 #include <iostream>
+#include "shopping_list.h"
 using namespace std;
 
 
@@ -15,10 +13,10 @@ int main(int argc, char* argv[])
 	switch (bw.Init())
 	{
 	case 1:
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+		cout << "SDL could not initialize! SDL_Error: %s\n" << SDL_GetError();
 		return 1;
 	case 2:
-		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+		cout << "Window could not be created! SDL_Error: %s\n" << SDL_GetError();
 		return 1;
 	default: break;
 	}
@@ -34,7 +32,7 @@ int main(int argc, char* argv[])
 
 	//Shopping List
 	ShoppingList sl = ShoppingList();
-	sl.AddItem({ "Gruyère", 2 });
+	sl.AddItem({ "Gruyï¿½re", 2 });
 	sl.AddItem({ "Patate", 8 });
 	bw.drawShoppingList(sl.GetList(), 0, 10);
 	
