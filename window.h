@@ -20,6 +20,7 @@ public:
 
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
 	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
+	void changePage();
 	
 private:
 	int b_window_width;
@@ -28,6 +29,7 @@ private:
 	SDL_Surface* b_screenSurface;
 	TTF_Font* font = NULL;
 	SDL_Renderer* renderer;
+
 };
 
 
