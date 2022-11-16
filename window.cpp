@@ -69,14 +69,15 @@ void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage
 		char buffer[30];
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
-		rect.x = 20;
-		rect.y = 100 + i * 30;
+		rect.x = 50;
+		rect.y = 600 + i * 30;
 		rect.w = 200;
 		rect.h = 15;
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 		drawText(list[i].name + " : " + buffer, rect, {0, 0, 0});
 	}
 }
+
 
 //Button
 Button::Button(int x, int y, int width, int height)
