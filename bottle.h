@@ -1,22 +1,29 @@
 #pragma once
 #include <SDL.h>
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+
 
 class Bottle {
-	
 public:
 	Bottle();
 	~Bottle();
-	void take(int quantite_max, int quantite_min, int hour_take);
-	void vomit(int quantite);
-	void schedule_take(int next_take, int date);
-	
+	void NewTake(int quantity, int hour, int date, bool taken = false);
+	Take GetTake(int id);
+	void TakeTaken(int id);
+	void TakeRegurgitated(int id);
+	//void writeTakes(const char* file = "list.takes");
+	//void readTakes(const char* file = "list.takes");
+
 private:
-	int quantite_max;
-	int quantite_min;
-	int quantite;
-	int next_take;
-	int hour_take;
-	int date;
-	
+	struct Take {
+		int id;
+		int quantity;
+		int hour;
+		int date;
+		bool taken;
+		bool regurgitated;
+	};
+
+	std::vector<Take> takes;
 };
