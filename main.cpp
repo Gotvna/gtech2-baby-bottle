@@ -8,6 +8,7 @@ using namespace std;
 
 #include "SDL.h"
 #include <stdio.h>
+#include "liste_course.h"
 
 
 
@@ -24,29 +25,42 @@ int main(int argc, char* argv[])
 		return 1;
 	default: break;
 	}
-  
+	/*
+	SDL_Color bleu = { 0, 0, 255, 255 };
+	SDL_Window* window = NULL;
+	SDL_Renderer* renderer = NULL;
+	*/
+
+ 
+
+
 	//Interactives elements creation
 	Button b1 = Button(0, 0, 100, 100);
 	b1.SetFont(bw.GetFont());
 	b1.setText("Test");
   
 	// Main loop
+
 	bool running = true;
+	SDL_Event event;
+
 	while (running)
 	{
-		//Catching events
-		SDL_Event event;
+
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
 			{
 				running = false;
 			}
+			else if (event.type == SDL_BUTTON_LEFT)
+			{
+
+			}
 		}
 		
 		//Drawing
 		bw.Update();
 	}
-	
 	return 0;
 }
