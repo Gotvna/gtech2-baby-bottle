@@ -69,6 +69,7 @@ int main(int argc, char* argv[])
 					rect = input.getRect();
 					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
 					{
+						input.setData("");
 						input.takeFocus();
 					}
 
