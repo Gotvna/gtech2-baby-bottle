@@ -5,16 +5,6 @@
 
 
 class Bottle {
-public:
-	Bottle();
-	~Bottle();
-	void NewTake(int quantity, int hour, int date, bool taken = false);
-	Take GetTake(int id);
-	void TakeTaken(int id);
-	void TakeRegurgitated(int id);
-	//void writeTakes(const char* file = "list.takes");
-	//void readTakes(const char* file = "list.takes");
-
 private:
 	struct Take {
 		int id;
@@ -24,6 +14,15 @@ private:
 		bool taken;
 		bool regurgitated;
 	};
-
+	
 	std::vector<Take> takes;
+
+public:
+	Bottle();
+	~Bottle();
+	void NewTake(int quantity, int hour, int date, bool taken = false);
+	void TakeTaken(int id);
+	void TakeRegurgitated(int id);
+	//void writeTakes(const char* file = "list.takes");
+	//void readTakes(const char* file = "list.takes");
 };

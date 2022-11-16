@@ -29,6 +29,7 @@ int main(int argc, char* argv[])
 	//Text drawing test
 	SDL_Color color = { 250, 0, 0 };
 	SDL_Rect rect = { 0, 0, 100, 100 };
+	bw.drawText("Test", rect, color);
 
 	//Shopping List
 	ShoppingList sl = ShoppingList();

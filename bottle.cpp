@@ -16,18 +16,13 @@ Bottle::~Bottle()
 void Bottle::NewTake(int quantity, int hour, int date, bool taken)
 {
 	Take newTake;
-	newTake.id = takes.size();
+	newTake.id = int(takes.size());
 	newTake.quantity = quantity;
 	newTake.hour = hour;
 	newTake.date = date;
 	newTake.taken = taken;
 	newTake.regurgitated = false;
 	takes.push_back(newTake);
-}
-
-Bottle::Take Bottle::GetTake(int id)
-{
-	return takes[id];
 }
 
 void Bottle::TakeTaken(int id)
