@@ -9,6 +9,7 @@ using namespace std;
 
 Bottle_Window bw = Bottle_Window(SCREEN_WIDTH, SCREEN_HEIGHT);;
 
+
 int main(int argc, char* argv[])
 {
 	switch (bw.Init())
@@ -28,7 +29,6 @@ int main(int argc, char* argv[])
 	b1.setText("Test");
   
 	//Text drawing test
-	
 	SDL_Color color = { 250, 250, 250 };
 	SDL_Rect rect = {230, 30, 100, 100 };
 	bw.drawText("Liste de courses", rect, color);
@@ -46,15 +46,20 @@ int main(int argc, char* argv[])
 	// Main loop
 
 	bool running = true;
+	int x;
+	int y;
 	SDL_Event event;
+	SDL_Color color = { 250, 0, 0 };
+	SDL_Rect rect = { 200, 200, 100, 100 };
 
 	while (running)
 	{
 
 		while (SDL_PollEvent(&event))
 		{
-			if (event.type == SDL_QUIT)
+			switch (event.type)
 			{
+			case SDL_QUIT:
 				running = false;
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN)
@@ -68,8 +73,14 @@ int main(int argc, char* argv[])
 					{
 						input.takeFocus();
 					}
+					else if (x >= 900 && x <= 1000 && y >= 200 && y <= 300)
+					{
+						bw.drawText("Test", rect, color);
+						break;
+					}
 				}
 			}
+	
 		}
 		
 		//Drawing

@@ -31,6 +31,7 @@ private:
 	SDL_Surface* b_screenSurface;
 	TTF_Font* font = NULL;
 	SDL_Renderer* renderer;
+
 };
 
 
