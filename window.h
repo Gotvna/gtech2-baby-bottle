@@ -4,6 +4,7 @@
 #include "shopping_list.h"
 #include "inputField.h"
 #include "const.h"
+#include "button.h"
 using namespace std;
 
 class Bottle_Window
@@ -22,6 +23,7 @@ public:
 	TTF_Font *GetFont() { return font; }
 
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
+	void drawButton(Button button);
 	void drawInput(inputField input);
 	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
 	

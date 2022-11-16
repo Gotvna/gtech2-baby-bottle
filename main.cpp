@@ -49,38 +49,33 @@ int main(int argc, char* argv[])
 	SDL_Event event;
 	while (running)
 	{
-
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
 			{
 			case SDL_QUIT:
 				running = false;
-			}
-			if (event.type == SDL_MOUSEBUTTONDOWN)
-			{
+			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button == SDL_BUTTON_LEFT)
 				{
 					SDL_Rect rect;
-					int mouseX, mouseY;
-					SDL_GetMouseState(&mouseX, &mouseY);
-					cout << "Mouse clicked at: " << mouseX << ", " << mouseY << endl;
 
 					rect = input.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					if (input.isClicked())
 					{
-						input.setData("");
-						input.takeFocus();
+						cout << "Input field clicked" << endl;
+						if (input.getData() == ". . .")
+							input.setData("");
+						if (input.takeFocus() == "")
+							input.setData(". . .");
 					}
-
-					//Check collsion with button
+					
 					rect = b1.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					if (b1.isClicked())
 					{
 						cout << "Button clicked" << endl;
 					}
 				}
-
 			}
 
 			//Drawing

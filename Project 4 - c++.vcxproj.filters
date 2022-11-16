@@ -11,7 +11,6 @@
   <ItemGroup>
     <ClInclude Include="bottle.h" />
     <ClInclude Include="const.h" />
-    <ClInclude Include="date.h" />
     <ClInclude Include="window.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="shopping_list.h" />

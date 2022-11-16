@@ -3,19 +3,29 @@
 
 extern Bottle_Window bw;
 
-inputField::inputField(SDL_Rect rect)
+inputField::inputField(SDL_Rect rect, SDL_Color bgColor, SDL_Color textColor, const char* data)
 {
-	data = "";
 	this->rect = rect;
+	this->bgColor = bgColor;
+	this->textColor = textColor;
+	this->data = data;
 }
 
 inputField::~inputField()
 {
 }
 
+bool inputField::isClicked()
+{
+	int x, y;
+	SDL_GetMouseState(&x, &y);
+	if (x > rect.x && x < rect.x + rect.w && y > rect.y && y < rect.y + rect.h)
+		return true;
+	return false;
+}
+
 string inputField::takeFocus()
 {
-	printf("took focus");
 	SDL_Event e;
 	bool quit = false;
 	while (!quit)
@@ -61,6 +71,5 @@ string inputField::takeFocus()
 		bw.drawInput(*this);
 		bw.Update();
 	}
-	printf("lost focus");
 	return data;
 }
