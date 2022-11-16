@@ -50,30 +50,6 @@ void ShoppingList::RemoveItem(Item i)
 }
 
 
-
-
-
-void ShoppingList::RemoveItem(int index)
-{
-	list.erase(list.begin() + index);
-}
-
-void ShoppingList::RemoveItem(string name)
-{
-	for (int j = 0; j < list.size(); j++)
-	{
-		if (list[j].name == name)
-		{
-			list.erase(list.begin() + j);
-		}
-	}
-}
-
-
-
-
-
-
 //Console mode functions (DO NOT USE ANYMORE)
 /*void DisplayItem(const Item i)
 {

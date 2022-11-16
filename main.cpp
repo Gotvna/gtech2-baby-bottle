@@ -36,11 +36,13 @@ int main(int argc, char* argv[])
 	b1.setText("Test");
   
 	//Text drawing test
-
+	SDL_Color color = { 250, 250, 250 };
+	SDL_Rect rect = {230, 30, 100, 100 };
+	bw.drawText("Liste de courses", rect, color);
 
 	//Shopping List
 	ShoppingList sl = ShoppingList();
-	sl.AddItem({ "Gruy�re", 2 });
+	sl.AddItem({ "Gruyere", 2 });
 	sl.AddItem({ "Patate", 8 });
 	bw.drawShoppingList(sl.GetList(), 0, 10);
 	

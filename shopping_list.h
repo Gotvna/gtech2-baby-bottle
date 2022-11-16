@@ -18,8 +18,6 @@ public:
 	vector<Item> GetList();
 	void AddItem(Item i);
 	void RemoveItem(Item i);
-	void RemoveItem(int index);
-	void RemoveItem(string name);
 
 private:
 	vector<Item> list;

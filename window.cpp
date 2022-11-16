@@ -35,7 +35,7 @@ int Bottle_Window::Init()
 	//Initialize SDL_ttf (text rendering)
 	if (TTF_Init() == -1)
 		return 3;
-	SetFont(TTF_OpenFont("fonts/Reglisse.otf", 16));
+	SetFont(TTF_OpenFont("fonts/Reglisse.otf", 30));
 
 	//Get window surface
 	b_screenSurface = SDL_GetWindowSurface(b_window);
@@ -70,10 +70,10 @@ void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
 		rect.x = 20;
-		rect.y = 10 + i * 40;
+		rect.y = 100 + i * 30;
 		rect.w = 200;
-		rect.h = 20;
-		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
+		rect.h = 15;
+		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 		drawText(list[i].name + " : " + buffer, rect, {0, 0, 0});
 	}
 }

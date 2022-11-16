@@ -20,7 +20,7 @@ public:
 
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
 	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
-	void changePage();
+	void removeItem(vector<Item> list, int page, int maxPerPage);
 	
 private:
 	int b_window_width;
@@ -41,7 +41,7 @@ public:
 	void setText(const char* text) { this->text = text; }
 	const char* getText() { return text; }
 	void SetFont(TTF_Font* font) { this->font = font; }
-	TTF_Font* GetFont() { return font; }
+	TTF_Font* GetFont() { return font; };
 
 private:
 	int x, y, width, height;
