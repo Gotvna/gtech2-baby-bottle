@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
 	//Text drawing test
 	SDL_Color color = { 250, 250, 250 };
-	SDL_Rect rect = { 230, 30, 100, 100 };
+	SDL_Rect rect = {230, 500, 100, 100 };
 	bw.drawText("Liste de courses", rect, color);
 
 	//Input field test
@@ -69,6 +69,7 @@ int main(int argc, char* argv[])
 					rect = input.getRect();
 					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
 					{
+						input.setData("");
 						input.takeFocus();
 					}
 

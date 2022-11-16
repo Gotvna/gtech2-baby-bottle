@@ -24,7 +24,6 @@ public:
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
 	void drawInput(inputField input);
 	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
-	void removeItem(vector<Item> list, int page, int maxPerPage);
 	
 private:
 	int b_window_width;
