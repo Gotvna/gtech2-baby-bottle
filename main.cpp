@@ -33,15 +33,22 @@ int main(int argc, char* argv[])
 	SDL_Rect rect = {230, 500, 100, 100 };
 	bw.drawText("Liste de courses", rect, color);
 
-	//Input field test
-	inputField input = inputField({ 0, 800, 100, 100 });
-	input.setData("Test");
+	//Input field
+	inputField input = inputField({ 0, 550, 250, 40 });
+	input.setData("Insert Data");
+	
+	//input field with quantity
+	vector<Item> list;
+	int i;
+	char buffer[30];
+	_itoa_s(list[i].quantity, buffer, 30, 10);
+	inputField input2 = inputField({ 0, 600, 250, 40 });
+	input2.setData("Insert Data");
+	
 
 	//Shopping List
 	ShoppingList sl = ShoppingList();
-	sl.AddItem({ "Gruyere", 2 });
-	sl.AddItem({ "Patate", 8 });
-	bw.drawShoppingList(sl.GetList(), 0, 10);
+	bw.drawShoppingList(sl.GetList(), 0, 5);
 
 	// Main loop
 
@@ -71,9 +78,15 @@ int main(int argc, char* argv[])
 					{
 						input.setData("");
 						input.takeFocus();
+						if (input.getData() != "" && SDLK_KP_ENTER)
+						{
+							sl.AddItem({ input.getData(), input2.getData()});
+							bw.drawShoppingList(sl.GetList(), 0, 10);
+							input.setData("Insert Data");
+						}
 					}
-
-					//Check collsion with button
+					
+					//Check collision with button
 					rect = b1.getRect();
 					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
 					{

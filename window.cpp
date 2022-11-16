@@ -73,7 +73,7 @@ void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
 		rect.x = 50;
-		rect.y = 600 + i * 30;
+		rect.y = 625 + i * 40;
 		rect.w = 200;
 		rect.h = 15;
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
