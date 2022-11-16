@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "window.h"
+#include "inputField.h"
 #include "const.h"
 using namespace std;
 
@@ -53,6 +54,13 @@ void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color)
 	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_BlitSurface(textSurface, NULL, b_screenSurface, &rect);
 	SDL_FreeSurface(textSurface);
+}
+
+void Bottle_Window::drawInput(inputField input)
+{
+	SDL_Rect rect = input.getRect();
+	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
+	drawText(input.getData(), rect, {0, 0, 0});
 }
 
 void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage){

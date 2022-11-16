@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "shopping_list.h"
+#include "inputField.h"
 
 class Bottle_Window
 {
@@ -19,6 +20,7 @@ public:
 	TTF_Font *GetFont() { return font; }
 
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
+	void drawInput(inputField input);
 	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
 	void removeItem(vector<Item> list, int page, int maxPerPage);
 	

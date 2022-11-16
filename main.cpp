@@ -4,12 +4,13 @@
 #include "date.h"
 #include <iostream>
 #include "shopping_list.h"
+#include "inputField.h"
 using namespace std;
 
+Bottle_Window bw = Bottle_Window(SCREEN_WIDTH, SCREEN_HEIGHT);;
 
 int main(int argc, char* argv[])
 {
-	Bottle_Window bw = Bottle_Window(SCREEN_WIDTH, SCREEN_HEIGHT);
 	switch (bw.Init())
 	{
 	case 1:
@@ -20,14 +21,6 @@ int main(int argc, char* argv[])
 		return 1;
 	default: break;
 	}
-	/*
-	SDL_Color bleu = { 0, 0, 255, 255 };
-	SDL_Window* window = NULL;
-	SDL_Renderer* renderer = NULL;
-	*/
-
- 
-
 
 	//Interactives elements creation
 	Button b1 = Button(0, 0, 100, 100);
@@ -39,6 +32,10 @@ int main(int argc, char* argv[])
 	SDL_Color color = { 250, 250, 250 };
 	SDL_Rect rect = {230, 30, 100, 100 };
 	bw.drawText("Liste de courses", rect, color);
+
+	//Input field test
+	inputField input = inputField({ 0, 800, 100, 100 });
+	input.setData("Test");
 
 	//Shopping List
 	ShoppingList sl = ShoppingList();
@@ -60,13 +57,23 @@ int main(int argc, char* argv[])
 			{
 				running = false;
 			}
-			else if (event.type == SDL_BUTTON_LEFT)
+			if (event.type == SDL_MOUSEBUTTONDOWN)
 			{
-
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					int mouseX, mouseY;
+					SDL_GetMouseState(&mouseX, &mouseY);
+					SDL_Rect rect = input.getRect();
+					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					{
+						input.takeFocus();
+					}
+				}
 			}
 		}
 		
 		//Drawing
+		bw.drawInput(input);
 		bw.Update();
 		
 	}
