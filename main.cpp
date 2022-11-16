@@ -26,6 +26,16 @@ int main(int argc, char* argv[])
 	b1.SetFont(bw.GetFont());
 	b1.setText("Test");
   
+	//Text drawing test
+	SDL_Color color = { 250, 0, 0 };
+	SDL_Rect rect = { 0, 0, 100, 100 };
+
+	//Shopping List
+	ShoppingList sl = ShoppingList();
+	sl.AddItem({ "Gruy�re", 2 });
+	sl.AddItem({ "Patate", 8 });
+	bw.drawShoppingList(sl.GetList(), 0, 10);
+	
 	// Main loop
 	bool running = true;
 	while (running)
@@ -42,6 +52,7 @@ int main(int argc, char* argv[])
 		
 		//Drawing
 		bw.Update();
+		
 	}
 	
 	return 0;
