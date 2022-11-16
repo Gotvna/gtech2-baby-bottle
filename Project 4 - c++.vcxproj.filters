@@ -6,6 +6,7 @@
     <ClCompile Include="shopping_list.cpp" />
     <ClCompile Include="bottle.cpp" />
     <ClCompile Include="inputField.cpp" />
+    <ClCompile Include="button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bottle.h" />
@@ -16,5 +17,6 @@
     <ClInclude Include="shopping_list.h" />
     <ClInclude Include="window.h" />
     <ClInclude Include="inputField.h" />
+    <ClInclude Include="button.h" />
   </ItemGroup>
 </Project>

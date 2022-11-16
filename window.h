@@ -3,6 +3,8 @@
 #include <SDL_ttf.h>
 #include "shopping_list.h"
 #include "inputField.h"
+#include "const.h"
+using namespace std;
 
 class Bottle_Window
 {
@@ -32,21 +34,4 @@ private:
 	TTF_Font* font = NULL;
 	SDL_Renderer* renderer;
 
-};
-
-
-class Button
-{
-public:
-	Button(int x, int y, int width, int height);
-	~Button();
-	void setText(const char* text) { this->text = text; }
-	const char* getText() { return text; }
-	void SetFont(TTF_Font* font) { this->font = font; }
-	TTF_Font* GetFont() { return font; };
-
-private:
-	int x, y, width, height;
-	const char* text;
-	TTF_Font* font = NULL;
 };

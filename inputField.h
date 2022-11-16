@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
 #include <string>
-using namespace std;
 #include <SDL.h>
+#include <SDL_ttf.h>
+using namespace std;
 
 class inputField
 {

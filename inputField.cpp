@@ -1,6 +1,4 @@
 #include "inputField.h"
-#include <SDL.h>
-#include <SDL_ttf.h>
 #include "window.h"
 
 extern Bottle_Window bw;
