@@ -78,6 +78,16 @@ void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage
 	}
 }
 
+void Bottle_Window::changePage() {
+	SDL_Rect rect;
+
+	rect.x = 200;
+	rect.y = 40;
+	rect.w = 200;
+	rect.h = 20;
+	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
+	drawText("bonjour", rect, {0, 0, 0});
+}
 //Button
 Button::Button(int x, int y, int width, int height)
 {

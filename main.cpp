@@ -7,6 +7,7 @@
 using namespace std;
 
 
+
 int main(int argc, char* argv[])
 {
 	Bottle_Window bw = Bottle_Window(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -35,7 +36,6 @@ int main(int argc, char* argv[])
 	b1.setText("Test");
   
 	//Text drawing test
-	
 	SDL_Color color = { 250, 250, 250 };
 	SDL_Rect rect = {230, 30, 100, 100 };
 	bw.drawText("Liste de courses", rect, color);
@@ -49,21 +49,39 @@ int main(int argc, char* argv[])
 	// Main loop
 
 	bool running = true;
+	int x;
+	int y;
 	SDL_Event event;
+	SDL_Color color = { 250, 0, 0 };
+	SDL_Rect rect = { 200, 200, 100, 100 };
 
 	while (running)
 	{
 
 		while (SDL_PollEvent(&event))
 		{
-			if (event.type == SDL_QUIT)
+			switch (event.type)
 			{
+			case SDL_QUIT:
 				running = false;
-			}
-			else if (event.type == SDL_BUTTON_LEFT)
-			{
+				break;
 
+			case SDL_MOUSEBUTTONDOWN:	//coordonné des buttons
+				if (x >= 900 && x <= 1000 && y >= 200 && y <= 300)
+				{
+					bw.drawText("Test", rect, color);
+					break;
+				}
+
+			case SDL_MOUSEMOTION:
+				SDL_GetGlobalMouseState(&x, &y);					
+				cout << x << " " << y << endl;
+				break;
+
+			default:
+				break;
 			}
+	
 		}
 		
 		//Drawing
