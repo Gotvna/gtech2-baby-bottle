@@ -19,4 +19,6 @@ public:
 	~ShoppingList();
 	void AddItem(Item i);
 	vector<Item> list;
+	std::string translateToTxt();
+	void translateFromTxt(std::string data);
 };

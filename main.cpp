@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	//Bottle
 	Bottle b;
 	string openDate = b.getNow();
-	b.writeInFile("log.txt", "App opened at:" + openDate);
+	b.translateFromTxt(b.readFromFile("takes.txt"));
 
 	//Feeder
 	Bottle fd;
@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
 	
 	//Shopping List
 	ShoppingList sl = ShoppingList();
+	sl.translateFromTxt(b.readFromFile("shopping_list.txt"));
 	inputField slInput = inputField({ SCREEN_WIDTH / 2 - 100, 750, 200, 40 });
 	slInput.setData("Insert Data");
 	vector<Button> slButtons;
@@ -75,7 +76,6 @@ int main(int argc, char* argv[])
 					{
 						if (slButtons[i].isClicked())
 						{
-							cout << "Clicked button " << i << endl;
 							if (slButtons[i].getText() == "+")
 							{
 								sl.list[int(i / 2)].quantity++;
@@ -103,9 +103,11 @@ int main(int argc, char* argv[])
 					}
 					
 				}
+				b.writeInFile("takes.txt", b.translateToTxt(), true);
+				b.writeInFile("shopping_list.txt", sl.translateToTxt(), true);
 			}
 		}
-
+		
 		bw.Clear();
 
 		//Draw text
