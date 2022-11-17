@@ -12,12 +12,11 @@ Bottle::~Bottle()
 {
 }
 
-void Bottle::NewTake(int quantity, int hour, int date, bool taken)
+void Bottle::NewTake(int quantity, std::string date, bool taken)
 {
 	Take newTake;
 	newTake.id = int(takes.size());
 	newTake.quantity = quantity;
-	newTake.hour = hour;
 	newTake.date = date;
 	newTake.taken = taken;
 	newTake.regurgitated = false;
@@ -72,34 +71,60 @@ string Bottle::getNow()
 
 string Bottle::translateToTxt()
 {
-	string data = "";
+	string data;
 	for (int i = 0; i < takes.size(); i++)
 	{
-		data += to_string(takes[i].id) + "|" + to_string(takes[i].quantity) + "|" + to_string(takes[i].hour) + "|" + to_string(takes[i].date) + "|" + to_string(takes[i].taken) + "|" + to_string(takes[i].regurgitated) + "\n";
+		data += to_string(takes[i].id) + "|" + to_string(takes[i].quantity) + "|" + takes[i].date + "|" + to_string(takes[i].taken) + "|" + to_string(takes[i].regurgitated) + "|";
 	}
 	return data;
 }
 
 void Bottle::translateFromTxt(string data)
 {
-	string line;
 	int i = 0;
-	while (data.find("\n") != string::npos)
+	while (i < data.size())
 	{
-		line = data.substr(0, data.find("\n"));
-		data = data.substr(data.find("\n") + 1);
-		takes[i].id = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
-		takes[i].quantity = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
-		takes[i].hour = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
-		takes[i].date = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
-		takes[i].taken = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
-		takes[i].regurgitated = stoi(line.substr(0, line.find("|")));
-		line = line.substr(line.find("|") + 1);
+		Take take;
+		string id;
+		string quantity;
+		string date;
+		string taken;
+		string regurgitated;
+		while (data[i] != '|')
+		{
+			id += data[i];
+			i++;
+		}
 		i++;
+		while (data[i] != '|')
+		{
+			quantity += data[i];
+			i++;
+		}
+		i++;
+		while (data[i] != '|')
+		{
+			date += data[i];
+			i++;
+		}
+		i++;
+		while (data[i] != '|')
+		{
+			taken += data[i];
+			i++;
+		}
+		i++;
+		while (data[i] != '|')
+		{
+			regurgitated += data[i];
+			i++;
+		}
+		i++;
+		take.id = stoi(id);
+		take.quantity = stoi(quantity);
+		take.date = date;
+		take.taken = stoi(taken);
+		take.regurgitated = stoi(regurgitated);
+		takes.push_back(take);
 	}
 }

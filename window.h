@@ -5,6 +5,7 @@
 #include "inputField.h"
 #include "const.h"
 #include "button.h"
+#include "bottle.h"
 using namespace std;
 
 class Bottle_Window
@@ -27,6 +28,7 @@ public:
 	void drawButton(Button button);
 	void drawInput(inputField input);
 	void drawShoppingList(vector<Item> list);
+	void drawTakes(vector<Take> takes);
 	
 private:
 	int b_window_width;
