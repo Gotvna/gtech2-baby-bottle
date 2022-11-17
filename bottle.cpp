@@ -26,12 +26,12 @@ vector<Take> Bottle::getTakes() {
 
 void Bottle::TakeTaken(int id)
 {
-	takes[id].taken = true;
+	takes[id].taken = !takes[id].taken;
 }
 
 void Bottle::TakeRegurgitated(int id)
 {
-	takes[id].regurgitated = true;
+	takes[id].regurgitated = !takes[id].regurgitated;
 }
 
 

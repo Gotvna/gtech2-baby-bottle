@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <SDL.h>
+#include <iostream>
 
 using namespace std;
 
@@ -15,17 +17,6 @@ class ShoppingList
 public:
 	ShoppingList();
 	~ShoppingList();
-	vector<Item> GetList();
 	void AddItem(Item i);
-	void RemoveItem(Item i);
-
-private:
 	vector<Item> list;
 };
-
-
-
-//Console mode functions:
-//void DisplayItem(const Item i);
-//void ShowList(const vector<Item>& L);
-//void InitListCourses(vector<Item>& L);
