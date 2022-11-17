@@ -1,5 +1,7 @@
+#pragma warning(disable : 4996)
 #include "bottle.h"
-using namespace std;	
+#include <ctime>
+using namespace std;
 
 Bottle::Bottle()
 {
@@ -33,30 +35,36 @@ void Bottle::TakeRegurgitated(int id)
 }
 
 
+void Bottle::writeInFile(string fileName, string data)
+ {
+	 fstream file;
+	 file.open(fileName, ios::app);
+	 file << data << endl;
+	 file.close();
+}
 
 
-// LOAD AND EXPORT DATA (LOW PRIORITY)
-////Write the list of takes into a file
-//void Bottle::writeTakes(const char* file)
-//{
-//	ofstream takesFile;
-//	takesFile.open(file, ios::out | ios::trunc);
-//	takesFile << "Writing this to a file.\n";
-//	takesFile.close();
-//}
-//
-////Read the list of takes from a file and load it into the vector
-//void Bottle::readTakes(const char* file)
-//{
-//	ifstream takesFile;
-//	string line;
-//	if (takesFile.is_open())
-//	{
-//		while (getline(takesFile, line))
-//		{
-//			cout << line << '\n';
-//		}
-//		takesFile.close();
-//	}
-//	else cout << "Unable to open file";
-//}
+string Bottle::readFromFile(string fileName)
+{
+	string data;
+	string line;
+	fstream file;
+	file.open(fileName, ios::in);
+	if (file.is_open())
+	{
+		while (getline(file, line))
+		{
+			data += line;
+		}
+		file.close();
+	}
+	return data;
+}
+
+string Bottle::getNow()
+{
+	time_t n = time(0);
+	string now = ctime(&n);
+	now.pop_back();
+	return now;
+}

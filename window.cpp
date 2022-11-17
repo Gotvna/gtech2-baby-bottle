@@ -83,22 +83,21 @@ void Bottle_Window::drawInput(inputField input)
 	drawText(input.getData().c_str(), rect, input.getTextColor());
 }
 
-void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage){
+void Bottle_Window::drawShoppingList(vector<Item> list){
 	SDL_Rect rect;
-	
-	int start = page * maxPerPage;
 	size_t end;
-	if (start + maxPerPage > list.size())
+	
+	if (3 > list.size())
 		end = list.size();
 	else 
-		end = start + maxPerPage;
-	for (int i = start; i < end; i++)
+		end = 3;
+	for (int i = 0; i < end; i++)
 	{
 		char buffer[30];
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
 		rect.x = 100;
-		rect.y = 625 + i * 40;
+		rect.y = 825 + i * 40;
 		rect.w = 200;
 		rect.h = 15;
 		

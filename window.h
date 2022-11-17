@@ -26,7 +26,7 @@ public:
 	void drawText(string text, SDL_Rect rect, SDL_Color color);
 	void drawButton(Button button);
 	void drawInput(inputField input);
-	void drawShoppingList(vector<Item> list, int page, int maxPerPage);
+	void drawShoppingList(vector<Item> list);
 	
 private:
 	int b_window_width;

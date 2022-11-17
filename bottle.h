@@ -24,8 +24,10 @@ public:
 	void TakeRegurgitated(int id);
 	std::vector<Take>& getTakes() { return takes; };
 	Take getTake(int id) { return takes[id]; };
-	//void writeTakes(const char* file = "list.takes");
-	//void readTakes(const char* file = "list.takes");
+	void writeInFile(std::string fileName, std::string data);
+	std::string readFromFile(std::string fileName);
+	std::string getNow();
+	
 private:
 	std::vector<Take> takes;
 };
