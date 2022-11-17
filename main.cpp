@@ -28,22 +28,46 @@ int main(int argc, char* argv[])
 	Button b1 = Button({ 0, 0, 100, 100 });
 	b1.setText("Test");
 
-	//Text drawing test
-	SDL_Color color = { 250, 250, 250 };
-	SDL_Rect rect = {230, 500, 100, 100 };
-	bw.drawText("Liste de courses", rect, color);
-
-	//Input field
-	inputField input = inputField({ 0, 550, 250, 40 });
-	input.setData("Insert Data");
+	//Title text
+	SDL_Color color1 = { 0, 0, 0 };
+	SDL_Rect rect1 = { 200, 20, 100, 100 };
+	bw.drawText("Bottle Scheduler", rect1, color1);
 	
-	//input field with quantity
-	vector<Item> list;
-	int i;
-	char buffer[30];
-	_itoa_s(list[i].quantity, buffer, 30, 10);
-	inputField input2 = inputField({ 0, 600, 250, 40 });
-	input2.setData("Insert Data");
+	//Title max quantity
+	SDL_Color color2 = { 255, 255, 255 };
+	SDL_Rect rect2 = { 50, 100, 100, 100 };
+	bw.drawText("Max quantity :", rect2, color2);
+	
+	//Input field max quantity
+	inputField input_max = inputField({ 75, 150, 250, 40 });
+	input_max.setData("Insert Data");
+
+	//Title current quantity
+	SDL_Color color3 = { 255, 255, 255 };
+	SDL_Rect rect3 = { 50, 200, 100, 100 };
+	bw.drawText("Current quantity :", rect3, color3);
+	
+	//Input field current quantity
+	inputField input_current = inputField({ 75, 250, 250, 40 });
+	input_current.setData("Insert Data");
+	
+	//Title min quantity
+	SDL_Color color4 = { 255, 255, 255 };
+	SDL_Rect rect4 = { 50, 300, 100, 100 };
+	bw.drawText("Min quantity :", rect4, color4);
+	
+	//Input field min quantity
+	inputField input_min = inputField({ 75, 350, 250, 40 });
+	input_min.setData("Insert Data");
+	
+	//Text drawing test
+	SDL_Color color = { 0, 0, 0 };
+	SDL_Rect rect = {200, 500, 100, 100 };
+	bw.drawText("Liste de courses", rect, color);
+	
+	//Input field
+	inputField input = inputField({ 75, 550, 250, 40 });
+	input.setData("Insert Data");
 	
 
 	//Shopping List
@@ -80,12 +104,46 @@ int main(int argc, char* argv[])
 						input.takeFocus();
 						if (input.getData() != "" && SDLK_KP_ENTER)
 						{
-							sl.AddItem({ input.getData(), input2.getData()});
+							sl.AddItem(Item({ input.getData(), 1 }));
 							bw.drawShoppingList(sl.GetList(), 0, 10);
 							input.setData("Insert Data");
 						}
 					}
+
+					rect = input_max.getRect();
+					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					{
+						input_max.setData("");
+						input_max.takeFocus();
+						if (input_max.getData() != "" && SDLK_KP_ENTER)
+						{
+							input_max.setData("Insert Data");
+						}
+					}
 					
+					rect = input_current.getRect();
+					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					{
+						input_current.setData("");
+						input_current.takeFocus();
+						if (input_current.getData() != "" && SDLK_KP_ENTER)
+						{
+							input_current.setData("Insert Data");
+						}
+					}
+
+					rect = input_min.getRect();
+					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					{
+						input_min.setData("");
+						input_min.takeFocus();
+						if (input_min.getData() != "" && SDLK_KP_ENTER)
+						{
+							input_min.setData("Insert Data");
+						}
+					}
+					
+	
 					//Check collision with button
 					rect = b1.getRect();
 					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)

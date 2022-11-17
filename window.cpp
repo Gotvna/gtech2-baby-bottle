@@ -31,7 +31,7 @@ int Bottle_Window::Init()
 	//Initialize SDL_ttf (text rendering)
 	if (TTF_Init() == -1)
 		return 3;
-	SetFont(TTF_OpenFont("fonts/Reglisse.otf", 30));
+	SetFont(TTF_OpenFont("fonts/Comic Gecko Pro.otf", 30));
 
 	//Get window surface
 	b_screenSurface = SDL_GetWindowSurface(b_window);
