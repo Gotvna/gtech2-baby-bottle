@@ -37,6 +37,11 @@ int main(int argc, char* argv[])
 	inputField slInput = inputField({ SCREEN_WIDTH / 2 - 100, 750, 200, 40 });
 	slInput.setData("Insert Data");
 	vector<Button> slButtons;
+	for (int i = 0; i < sl.list.size(); i++)
+	{
+		slButtons.push_back(Button({ 05, int(825 + i * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "+"));
+		slButtons.push_back(Button({ 50, int(825 + i * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "-"));
+	}
 	
 	// Main loop
 	bool running = true;

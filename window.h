@@ -23,7 +23,7 @@ public:
 	SDL_Surface* GetSurface() { return b_screenSurface; }
 	TTF_Font *GetFont() { return font; }
 
-	void drawText(string text, SDL_Rect rect, SDL_Color color);
+	void drawText(string text, SDL_Rect rect, SDL_Color color, bool centered = true);
 	void drawButton(Button button);
 	void drawInput(inputField input);
 	void drawShoppingList(vector<Item> list);
