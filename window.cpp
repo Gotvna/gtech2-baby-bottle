@@ -51,11 +51,22 @@ void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color)
 	SDL_FreeSurface(textSurface);
 }
 
+void Bottle_Window::drawButton(Button button)
+{
+	SDL_Rect rect = button.getRect();
+	SDL_Color bgColor = button.getBgColor();
+
+	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, bgColor.r, bgColor.g, bgColor.b));
+	drawText(button.getText(), rect, button.getTextColor());
+}
+
 void Bottle_Window::drawInput(inputField input)
 {
 	SDL_Rect rect = input.getRect();
-	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 255, 255, 255));
-	drawText(input.getData(), rect, {0, 0, 0});
+	SDL_Color bgColor = input.getBgColor();
+	
+	SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, bgColor.r, bgColor.g, bgColor.b));
+	drawText(input.getData().c_str(), rect, input.getTextColor());
 }
 
 void Bottle_Window::drawShoppingList(vector<Item> list, int page, int maxPerPage){

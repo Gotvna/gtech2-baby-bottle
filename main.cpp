@@ -80,78 +80,33 @@ int main(int argc, char* argv[])
 	SDL_Event event;
 	while (running)
 	{
-
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
 			{
 			case SDL_QUIT:
 				running = false;
-			}
-			if (event.type == SDL_MOUSEBUTTONDOWN)
-			{
+			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button == SDL_BUTTON_LEFT)
 				{
 					SDL_Rect rect;
-					int mouseX, mouseY;
-					SDL_GetMouseState(&mouseX, &mouseY);
-					cout << "Mouse clicked at: " << mouseX << ", " << mouseY << endl;
 
 					rect = input.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					if (input.isClicked())
 					{
-						input.setData("");
-						input.takeFocus();
-						if (input.getData() != "" && SDLK_KP_ENTER)
-						{
-							sl.AddItem(Item({ input.getData(), 1 }));
-							bw.drawShoppingList(sl.GetList(), 0, 10);
-							input.setData("Insert Data");
-						}
-					}
-
-					rect = input_max.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
-					{
-						input_max.setData("");
-						input_max.takeFocus();
-						if (input_max.getData() != "" && SDLK_KP_ENTER)
-						{
-							input_max.setData("Insert Data");
-						}
+						cout << "Input field clicked" << endl;
+						if (input.getData() == ". . .")
+							input.setData("");
+						if (input.takeFocus() == "")
+							input.setData(". . .");
 					}
 					
-					rect = input_current.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
-					{
-						input_current.setData("");
-						input_current.takeFocus();
-						if (input_current.getData() != "" && SDLK_KP_ENTER)
-						{
-							input_current.setData("Insert Data");
-						}
-					}
-
-					rect = input_min.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
-					{
-						input_min.setData("");
-						input_min.takeFocus();
-						if (input_min.getData() != "" && SDLK_KP_ENTER)
-						{
-							input_min.setData("Insert Data");
-						}
-					}
-					
-	
-					//Check collision with button
 					rect = b1.getRect();
-					if (mouseX > rect.x && mouseX < rect.x + rect.w && mouseY > rect.y && mouseY < rect.y + rect.h)
+					if (b1.isClicked())
 					{
 						cout << "Button clicked" << endl;
 					}
 				}
-
 			}
 
 			//Drawing
