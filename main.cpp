@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
 	slInput.setData("Insert Data");
 	vector<Button> slButtons;
 	
+	//Init button to save the hour
 	bw.drawButton(Button({ 05, 120, 200, 50 }, { 255, 255, 255, 255 }, { 0, 0, 0, 255 }, "Save the hour"));
 	
 	// Main loop
@@ -107,11 +108,8 @@ int main(int argc, char* argv[])
 							break;
 						}
 					}
-
-					//Button à reparer (la function d'ecriture marche)
-
-					
-					if (hourTaken.getText() == "Validate Hour")
+	
+					if (hourTaken.getText() == "Save the hour")
 					{
 						cout << "Validate Hour" << endl;
 						time_t now = time(0);
