@@ -30,6 +30,10 @@ int main(int argc, char* argv[])
 	b.writeInFile("log.txt", "App opened at:" + openDate);
 
 	//Feeder
+	Bottle fd;
+	inputField fdInput = inputField(SDL_Rect{ int(SCREEN_WIDTH / 2 - 100), int(SCREEN_HEIGHT / 2 - 100), 200, 50 }, SDL_Color{ 255, 255, 255, 255 }, SDL_Color{ 0, 0, 0, 255 }, "New Take");
+	fdInput.setData("Insert quantity");
+	vector<Button> fdButtons;
 	
 	//Shopping List
 	ShoppingList sl = ShoppingList();
@@ -93,6 +97,11 @@ int main(int argc, char* argv[])
 							break;
 						}
 					}
+					if (fdInput.isClicked()) 
+					{
+
+					}
+					
 				}
 			}
 		}
@@ -109,7 +118,7 @@ int main(int argc, char* argv[])
 		for (int i = 0; i < slButtons.size(); i++) {
 			bw.drawButton(slButtons[i]);
 		};
-
+		
 		//Draw input field
 		bw.drawInput(slInput);
 		
