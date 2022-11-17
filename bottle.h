@@ -8,19 +8,10 @@
 struct Take {
 	int id;
 	int quantity;
+	int hour;
+	int date;
 	bool taken;
 	bool regurgitated;
-};
-	
-class Bottle {
-private:
-	std::vector<Take> takes;
-		int id;
-		int quantity;
-		int hour;
-		int date;
-		bool taken;
-		bool regurgitated;
 };
 
 class Bottle {
@@ -28,8 +19,7 @@ class Bottle {
 public:
 	Bottle();
 	~Bottle();
-	void NewTake(int quantity, bool taken = false);
-	vector<Take> getTakes();
+	void NewTake(int quantity, int hour, int date, bool taken = false);
 	void TakeTaken(int id);
 	void TakeRegurgitated(int id);
 	std::vector<Take>& getTakes() { return takes; };
