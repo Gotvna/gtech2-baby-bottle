@@ -34,15 +34,16 @@ void Bottle::TakeRegurgitated(int id)
 	takes[id].regurgitated = !takes[id].regurgitated;
 }
 
-
-void Bottle::writeInFile(string fileName, string data)
- {
-	 fstream file;
-	 file.open(fileName, ios::app);
-	 file << data << endl;
-	 file.close();
+void Bottle::writeInFile(std::string fileName, std::string data, bool rewrite)
+{
+	ofstream file;
+	if (rewrite)
+		file.open(fileName, ios::out | ios::trunc);
+	else
+		file.open(fileName, ios::out | ios::app);
+	file << data;
+	file.close();
 }
-
 
 string Bottle::readFromFile(string fileName)
 {
@@ -67,4 +68,38 @@ string Bottle::getNow()
 	string now = ctime(&n);
 	now.pop_back();
 	return now;
+}
+
+string Bottle::translateToTxt()
+{
+	string data = "";
+	for (int i = 0; i < takes.size(); i++)
+	{
+		data += to_string(takes[i].id) + "|" + to_string(takes[i].quantity) + "|" + to_string(takes[i].hour) + "|" + to_string(takes[i].date) + "|" + to_string(takes[i].taken) + "|" + to_string(takes[i].regurgitated) + "\n";
+	}
+	return data;
+}
+
+void Bottle::translateFromTxt(string data)
+{
+	string line;
+	int i = 0;
+	while (data.find("\n") != string::npos)
+	{
+		line = data.substr(0, data.find("\n"));
+		data = data.substr(data.find("\n") + 1);
+		takes[i].id = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		takes[i].quantity = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		takes[i].hour = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		takes[i].date = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		takes[i].taken = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		takes[i].regurgitated = stoi(line.substr(0, line.find("|")));
+		line = line.substr(line.find("|") + 1);
+		i++;
+	}
 }
