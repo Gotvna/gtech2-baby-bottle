@@ -26,7 +26,6 @@ public:
 	Take getTake(int id) { return takes[id]; };
 	//void writeTakes(const char* file = "list.takes");
 	//void readTakes(const char* file = "list.takes");
-
 private:
 	std::vector<Take> takes;
 };

@@ -30,6 +30,9 @@ int main(int argc, char* argv[])
 	//Bottle buttons
 	//Button newTakeButton = Button(int(SCREEN_WIDTH / 2 - 100), int(SCREEN_HEIGHT / 2 - 100), 200, 50, "New Take");
 
+	Button hourTaken = Button({ 05, 120, 200, 50 }, { 255, 255, 255, 255 }, { 0, 0, 0, 255 }, "Save the hour");
+
+	
 	//Actual time function
 	time_t now = time(0);
 	char* dt = ctime(&now);
@@ -46,10 +49,9 @@ int main(int argc, char* argv[])
 	inputField slInput = inputField({ 75, 550, 250, 40 });
 	slInput.setData("Insert Data");
 	vector<Button> slButtons;
-
-	//Button to validate hour inside take.txt
-	/*vector<Button> validateHourButton; */
-
+	
+	bw.drawButton(Button({ 05, 120, 200, 50 }, { 255, 255, 255, 255 }, { 0, 0, 0, 255 }, "Save the hour"));
+	
 	// Main loop
 	bool running = true;
 	SDL_Event event;
@@ -105,18 +107,22 @@ int main(int argc, char* argv[])
 							break;
 						}
 					}
-					//if (validateHourButton.isClicked())
-					//{
-					//	cout << "Validate Hour" << endl;
-					//	time_t now = time(0);
-					//	char* dt = ctime(&now);
-					//	cout << "Actual time is : " << dt << endl;
 
-					//	fstream filestr;
-					//	filestr.open("take.txt", fstream::out | fstream::app);
-					//	filestr << dt << "actual time he take" << endl;
-					//	filestr.close();
-					//}
+					//Button à reparer (la function d'ecriture marche)
+
+					
+					if (hourTaken.getText() == "Validate Hour")
+					{
+						cout << "Validate Hour" << endl;
+						time_t now = time(0);
+						char* dt = ctime(&now);
+						cout << "Actual time is : " << dt << endl;
+
+						fstream filestr;
+						filestr.open("take.txt", fstream::out | fstream::app);
+						filestr << dt << "actual time he take" << endl;
+						filestr.close();
+					}
 				}
 			}
 
@@ -137,8 +143,7 @@ int main(int argc, char* argv[])
 			for (int i = 0; i < slButtons.size(); i++) {
 				bw.drawButton(slButtons[i]);
 			};
-			bw.drawButton(Button({ 05, 120, 200, 50 }, { 255, 255, 255, 255 }, { 0, 0, 0, 255 }, "Save the hour"));
-			/*bw.drawButton(validateHourButton[0]);*/
+			bw.drawButton(hourTaken);
 			
 			//Draw input field
 			bw.drawInput(slInput);
