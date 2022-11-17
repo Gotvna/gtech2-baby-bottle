@@ -14,6 +14,7 @@ public:
 	~Bottle_Window();
 	int Init();
 	void Update();
+	void Clear();
 	void SetFont(TTF_Font* font) { this->font = font; }
 	
 	int GetWidth() { return b_window_width; }

@@ -8,7 +8,7 @@ public:
 	Button(SDL_Rect rect, SDL_Color bgColor = {250, 250, 250}, SDL_Color textColor = {0, 0, 0}, const char* text = "Button");
 	~Button();
 	bool isClicked();
-	void setRect() { this->rect = rect; }
+	void setRect(SDL_Rect rect) { this->rect = rect; }
 	SDL_Rect getRect() { return rect; }
 	void setBgColor(SDL_Color color) { this->bgColor = color; }
 	SDL_Color getBgColor() { return bgColor; }
