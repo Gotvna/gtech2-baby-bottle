@@ -6,12 +6,12 @@
 #include <fstream>
 
 struct Take {
-		int id;
-		int quantity;
-		int hour;
-		int date;
-		bool taken;
-		bool regurgitated;
+	int id;
+	int quantity;
+	int hour;
+	int date;
+	bool taken;
+	bool regurgitated;
 };
 
 class Bottle {
@@ -26,7 +26,6 @@ public:
 	Take getTake(int id) { return takes[id]; };
 	//void writeTakes(const char* file = "list.takes");
 	//void readTakes(const char* file = "list.takes");
-
 private:
 	std::vector<Take> takes;
 };
