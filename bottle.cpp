@@ -10,16 +10,18 @@ Bottle::~Bottle()
 {
 }
 
-void Bottle::NewTake(int quantity, int hour, int date, bool taken)
+void Bottle::NewTake(int quantity, bool taken)
 {
 	Take newTake;
 	newTake.id = int(takes.size());
 	newTake.quantity = quantity;
-	newTake.hour = hour;
-	newTake.date = date;
 	newTake.taken = taken;
 	newTake.regurgitated = false;
 	takes.push_back(newTake);
+}
+
+vector<Take> Bottle::getTakes() {
+	return takes;
 }
 
 void Bottle::TakeTaken(int id)
@@ -31,6 +33,8 @@ void Bottle::TakeRegurgitated(int id)
 {
 	takes[id].regurgitated = true;
 }
+
+
 
 
 // LOAD AND EXPORT DATA (LOW PRIORITY)
