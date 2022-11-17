@@ -49,18 +49,31 @@ void Bottle_Window::Clear()
 	SDL_FillRect(b_screenSurface, NULL, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 }
 
-void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color)
+void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color, bool centered)
 {
 	if (text == "")
 		return;
-	// Draw the text centered in the rect
 	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
-	SDL_Rect textRect = {
+	SDL_Rect textRect;
+	if (centered)
+	{
+		textRect = {
 		rect.x + (rect.w - textSurface->w) / 2,
 		rect.y + (rect.h - textSurface->h) / 2,
 		textSurface->w,
 		textSurface->h
-	};
+		};
+	}
+	else
+	{
+		textRect = {
+		rect.x,
+		rect.y,
+		textSurface->w,
+		textSurface->h
+		};
+	}
+		
 	SDL_BlitSurface(textSurface, NULL, b_screenSurface, &textRect);
 	SDL_FreeSurface(textSurface);
 }
@@ -102,6 +115,6 @@ void Bottle_Window::drawShoppingList(vector<Item> list){
 		rect.h = 15;
 		
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
-		drawText(list[i].name + " : " + buffer, rect, {0, 0, 0});
+		drawText(list[i].name + " : " + buffer, rect, { 0, 0, 0 }, false);
 	}
 }
