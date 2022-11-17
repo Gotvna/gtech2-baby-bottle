@@ -55,6 +55,7 @@ void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color, bool c
 		return;
 	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_Rect textRect;
+	//If centered, changes coordinates of the given rect
 	if (centered)
 	{
 		textRect = {
@@ -73,7 +74,7 @@ void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color, bool c
 		textSurface->h
 		};
 	}
-		
+	//Draw
 	SDL_BlitSurface(textSurface, NULL, b_screenSurface, &textRect);
 	SDL_FreeSurface(textSurface);
 }
@@ -106,6 +107,7 @@ void Bottle_Window::drawShoppingList(vector<Item> list){
 		end = 3;
 	for (int i = 0; i < end; i++)
 	{
+		//Buffer the quantity number to a string
 		char buffer[30];
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
@@ -114,6 +116,7 @@ void Bottle_Window::drawShoppingList(vector<Item> list){
 		rect.w = 200;
 		rect.h = 15;
 		
+		//Draw
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 		drawText(list[i].name + " : " + buffer, rect, { 0, 0, 0 }, false);
 	}
@@ -130,6 +133,7 @@ void Bottle_Window::drawTakes(vector<Take> takes)
 		end = 11;
 	for (int i = 0; i < end; i++)
 	{
+		//Buffer the quatity number to a string
 		char buffer[30];
 		_itoa_s(takes[i].quantity, buffer, 30, 10);
 
@@ -138,6 +142,7 @@ void Bottle_Window::drawTakes(vector<Take> takes)
 		rect.w = 135;
 		rect.h = 40;
 
+		//Draw
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 		drawText(takes[i].date + " : " + buffer, rect, {0, 0, 0}, false);
 	}

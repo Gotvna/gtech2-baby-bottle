@@ -43,12 +43,14 @@ void ShoppingList::translateFromTxt(std::string data)
 		Item item;
 		string name;
 		string quantity;
+		//Transfer all chars before | to name
 		while (data[i] != '|')
 		{
 			name += data[i];
 			i++;
 		}
 		i++;
+		//Transfer all chars before | to quantity
 		while (data[i] != '|')
 		{
 			quantity += data[i];

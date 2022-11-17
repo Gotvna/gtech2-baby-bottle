@@ -40,15 +40,20 @@ string inputField::takeFocus()
 			{
 				switch (e.key.keysym.sym)
 				{
+				//Remove a char from the end
 				case SDLK_BACKSPACE:
 					if (data.length() > 0)
 					{
 						data.pop_back();
 					}
 					break;
+
+				//Press Enter to Exit
 				case SDLK_RETURN:
 					quit = true;
 					break;
+				
+				//All other keys
 				default:
 					data += e.key.keysym.sym;
 					break;
@@ -60,6 +65,7 @@ string inputField::takeFocus()
 				{
 					int mouseX, mouseY;
 					SDL_GetMouseState(&mouseX, &mouseY);
+					//Check if we click outside the input field
 					if (mouseX < rect.x || mouseX > rect.x + rect.w || mouseY < rect.y || mouseY > rect.y + rect.h)
 					{
 						quit = true;

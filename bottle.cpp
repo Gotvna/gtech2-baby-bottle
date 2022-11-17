@@ -37,8 +37,10 @@ void Bottle::writeInFile(std::string fileName, std::string data, bool rewrite)
 {
 	ofstream file;
 	if (rewrite)
+		//Open the file in write mode and delete the previous content
 		file.open(fileName, ios::out | ios::trunc);
 	else
+		//Open the file in append mode
 		file.open(fileName, ios::out | ios::app);
 	file << data;
 	file.close();
@@ -49,6 +51,7 @@ string Bottle::readFromFile(string fileName)
 	string data;
 	string line;
 	fstream file;
+	//Open the file in read mode
 	file.open(fileName, ios::in);
 	if (file.is_open())
 	{
