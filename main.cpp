@@ -95,10 +95,17 @@ int main(int argc, char* argv[])
 					if (input.isClicked())
 					{
 						cout << "Input field clicked" << endl;
-						if (input.getData() == ". . .")
+						if (input.getData() == "Insert Data")
 							input.setData("");
-						if (input.takeFocus() == "")
-							input.setData(". . .");
+						string data = input.takeFocus();
+						if (data == "")
+							input.setData("Insert Data");
+						else
+							{ 
+							sl.AddItem(Item({ data, 1 }));
+							bw.drawShoppingList(sl.GetList(), 0, 5);
+							input.setData("Insert Data");
+						}
 					}
 					
 					rect = b1.getRect();
