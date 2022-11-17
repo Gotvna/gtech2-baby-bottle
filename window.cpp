@@ -51,8 +51,17 @@ void Bottle_Window::Clear()
 
 void Bottle_Window::drawText(string text, SDL_Rect rect, SDL_Color color)
 {
+	if (text == "")
+		return;
+	// Draw the text centered in the rect
 	SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
-	SDL_BlitSurface(textSurface, NULL, b_screenSurface, &rect);
+	SDL_Rect textRect = {
+		rect.x + (rect.w - textSurface->w) / 2,
+		rect.y + (rect.h - textSurface->h) / 2,
+		textSurface->w,
+		textSurface->h
+	};
+	SDL_BlitSurface(textSurface, NULL, b_screenSurface, &textRect);
 	SDL_FreeSurface(textSurface);
 }
 

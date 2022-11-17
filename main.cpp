@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
 	default: break;
 	}
 	
+	//Bottle buttons
+	//Button newTakeButton = Button(int(SCREEN_WIDTH / 2 - 100), int(SCREEN_HEIGHT / 2 - 100), 200, 50, "New Take");
+
 	
 	//Shopping List
 	ShoppingList sl = ShoppingList();
@@ -55,9 +58,9 @@ int main(int argc, char* argv[])
 							slInput.setData("Insert Data");
 						else
 						{ 
+							slButtons.push_back(Button({ 05, int(625 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "+"));
+							slButtons.push_back(Button({ 50, int(625 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "-"));
 							sl.AddItem(Item({ data, 1 }));
-							slButtons.push_back(Button({ 05, int(585 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "+"));
-							slButtons.push_back(Button({ 50, int(585 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "-"));
 							slInput.setData("Insert Data");
 						}
 					}
@@ -90,15 +93,21 @@ int main(int argc, char* argv[])
 				}
 			}
 
-			//Drawing
 			bw.Clear();
-			// Text
-			bw.drawText("Bottle Scheduler", { 200, 20, 100, 100 }, { 0, 0, 0 });
-			bw.drawText("Liste de courses", { 200, 500, 100, 100 }, { 0, 0, 0 });
+			
+			//Draw text
+			bw.drawText("Bottle scheduler", { SCREEN_WIDTH / 2 - 100, 10, 200, 50 }, { 0, 0, 0, 255 });
+			bw.drawText("Shopping List", { SCREEN_WIDTH / 2 - 100, 500, 200, 50 }, { 0, 0, 0, 255 });
 			bw.drawShoppingList(sl.list, 0, 5);
+			
+			//Draw buttons
 			for (int i = 0; i < slButtons.size(); i++)
 				bw.drawButton(slButtons[i]);
+
+			//Draw input field
 			bw.drawInput(slInput);
+			
+			//Update
 			bw.Update();
 
 		}
