@@ -8,8 +8,7 @@
 struct Take {
 	int id;
 	int quantity;
-	int hour;
-	int date;
+	std::string date;
 	bool taken;
 	bool regurgitated;
 };
@@ -19,7 +18,7 @@ class Bottle {
 public:
 	Bottle();
 	~Bottle();
-	void NewTake(int quantity, int hour, int date, bool taken = false);
+	void NewTake(int quantity, std::string date, bool taken = false);
 	void TakeTaken(int id);
 	void TakeRegurgitated(int id);
 	std::vector<Take>& getTakes() { return takes; };

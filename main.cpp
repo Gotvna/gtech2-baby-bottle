@@ -23,13 +23,36 @@ int main(int argc, char* argv[])
 		return 1;
 	default: break;
 	}
-	
+
 	//Bottle
 	Bottle b;
 	string openDate = b.getNow();
 	b.translateFromTxt(b.readFromFile("takes.txt"));
 
 	//Feeder
+	inputField fdInput = inputField({ SCREEN_WIDTH / 2 - 150, 100, 300, 40 });
+	fdInput.setData("Insert quantity");
+	vector<Button> fdButtons;
+	for (int i = 0; i < b.getTakes().size(); i++)
+	{
+		if (b.getTakes()[i].regurgitated)
+		{
+			fdButtons.push_back(Button({ 150, int(210 + i * 40), 150, 40 }, { 0, 0, 255, 255 }, { 0, 255, 0, 255 }, "Vomited"));
+		}
+		else
+		{
+			fdButtons.push_back(Button({ 150, int(210 + i * 40), 150, 40 }, { 255, 255, 0, 255 }, { 0, 255, 0, 255 }, "Vomit"));
+		}
+		if (b.getTakes()[i].taken)
+		{
+			fdButtons.push_back(Button({ 05, int(210 + i * 40), 130, 40 }, { 255, 0, 0, 255 }, { 255, 255, 255, 255 }, "Taken"));
+
+		}
+		else
+		{
+			fdButtons.push_back(Button({ 05, int(210 + i * 40), 130, 40 }, { 0, 0, 255, 255 }, { 255, 255, 255, 255 }, "Take"));
+		}
+	}
 	
 	//Shopping List
 	ShoppingList sl = ShoppingList();
@@ -67,6 +90,14 @@ int main(int argc, char* argv[])
 							slInput.setData("Insert Data");
 						else
 						{
+							for (int i = 0; i < data.length(); i++)
+							{
+								if (!isalpha(data[i]))
+								{
+									data.erase(i, 1);
+									i--;
+								}
+							}
 							slButtons.push_back(Button({ 05, int(825 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "+"));
 							slButtons.push_back(Button({ 50, int(825 + sl.list.size() * 40), 40, 40 }, { 0, 0, 0, 255 }, { 255, 255, 255, 255 }, "-"));
 							sl.AddItem(Item({ data, 1 }));
@@ -98,6 +129,64 @@ int main(int argc, char* argv[])
 							break;
 						}
 					}
+					if (fdInput.isClicked()) 
+					{
+						if (fdInput.getData() == "Insert quantity")
+							fdInput.setData("");
+						string data = fdInput.takeFocus();
+						if (data == "")
+							fdInput.setData("Insert quantity");
+						else
+						{
+							int quantity = 0;
+							for (int i = 0; i < data.length(); i++)
+							{
+								if (data[i] >= '0' && data[i] <= '9')
+									quantity = quantity * 10 + (data[i] - '0');
+							}
+							string date = b.getNow();
+							date = date.substr(8, 2) + " " + date.substr(4, 3) + " " + date.substr(11, 5);
+							b.NewTake(quantity, date);
+							fdInput.setData("Insert quantity");
+							fdButtons.push_back(Button({ 05, int(170 + b.getTakes().size() * 40), 130, 40}, {0, 0, 255, 255}, {255, 255, 255, 255}, "Take"));
+							fdButtons.push_back(Button({ 150, int(170 + b.getTakes().size() * 40), 150, 40 }, { 255, 255, 0, 255 }, { 0, 255, 0, 255 }, "Vomit"));
+						}
+					}
+					else for (int i = 0; i < fdButtons.size(); i++)
+					{
+						if (fdButtons[i].isClicked())
+						{
+							if (fdButtons[i].getText() == "Take")
+							{
+								fdButtons[i].setBgColor({ 255, 0, 0, 255 });
+								fdButtons[i].setText("Taken");
+								fdButtons[i].setRect({ fdButtons[i].getRect().x, fdButtons[i].getRect().y, 130, 40 });
+								b.getTakes()[int(i / 2)].taken = true;
+							}
+							else if (fdButtons[i].getText() == "Taken")
+							{
+								fdButtons[i].setBgColor({ 0, 0, 255, 255 });
+								fdButtons[i].setText("Take");
+								fdButtons[i].setRect({ fdButtons[i].getRect().x, fdButtons[i].getRect().y, 130, 40 });
+								b.getTakes()[int(i / 2)].taken = false;
+							}
+							else if (fdButtons[i].getText() == "Vomit")
+							{
+								fdButtons[i].setBgColor({ 0, 0, 255, 255 });
+								fdButtons[i].setText("Vomited");
+								fdButtons[i].setRect({ fdButtons[i].getRect().x, fdButtons[i].getRect().y, 150, 40 });
+								b.getTakes()[int(i / 2)].regurgitated = true;
+							}
+							else if (fdButtons[i].getText() == "Vomited")
+							{
+								fdButtons[i].setBgColor({ 255, 255, 0, 255 });
+								fdButtons[i].setText("Vomit");
+								fdButtons[i].setRect({ fdButtons[i].getRect().x, fdButtons[i].getRect().y, 150, 40 });
+								b.getTakes()[int(i / 2)].regurgitated = false;
+							}
+							break;
+						}
+					}
 				}
 				b.writeInFile("takes.txt", b.translateToTxt(), true);
 				b.writeInFile("shopping_list.txt", sl.translateToTxt(), true);
@@ -109,6 +198,7 @@ int main(int argc, char* argv[])
 		//Draw text
 		bw.drawText("Bottle scheduler", { SCREEN_WIDTH / 2 - 100, 10, 200, 50 }, { 0, 0, 0, 255 });
 		bw.drawText(b.getNow(), { SCREEN_WIDTH / 2 - 100, 50, 200, 50 }, { 0, 0, 0, 255 });
+		bw.drawTakes(b.getTakes());
 		bw.drawText("Shopping List", { SCREEN_WIDTH / 2 - 100, 700, 200, 50 }, { 0, 0, 0, 255 });
 		bw.drawShoppingList(sl.list);
 
@@ -116,9 +206,13 @@ int main(int argc, char* argv[])
 		for (int i = 0; i < slButtons.size(); i++) {
 			bw.drawButton(slButtons[i]);
 		};
-
+		for (int i = 0; i < fdButtons.size(); i++) {
+			bw.drawButton(fdButtons[i]);
+		};
+		
 		//Draw input field
 		bw.drawInput(slInput);
+		bw.drawInput(fdInput);
 		
 		//Update
 		bw.Update();

@@ -110,11 +110,35 @@ void Bottle_Window::drawShoppingList(vector<Item> list){
 		_itoa_s(list[i].quantity, buffer, 30, 10);
 		
 		rect.x = 100;
-		rect.y = 825 + i * 40;
+		rect.y = 830 + i * 40;
 		rect.w = 200;
 		rect.h = 15;
 		
 		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
 		drawText(list[i].name + " : " + buffer, rect, { 0, 0, 0 }, false);
+	}
+}
+
+void Bottle_Window::drawTakes(vector<Take> takes)
+{
+	SDL_Rect rect;
+	size_t end;
+
+	if (11 > takes.size())
+		end = takes.size();
+	else
+		end = 11;
+	for (int i = 0; i < end; i++)
+	{
+		char buffer[30];
+		_itoa_s(takes[i].quantity, buffer, 30, 10);
+
+		rect.x = 325;
+		rect.y = 215 + i * 40;
+		rect.w = 135;
+		rect.h = 40;
+
+		SDL_FillRect(b_screenSurface, &rect, SDL_MapRGB(b_screenSurface->format, 100, 100, 100));
+		drawText(takes[i].date + " : " + buffer, rect, {0, 0, 0}, false);
 	}
 }
